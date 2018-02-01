@@ -17,17 +17,29 @@ class App extends React.Component {
     this.setState({searchTerm: input});
   }
 
+  // searchYouTube(options, callBack) {
+  //   console.log(options);
+  //   let url = 'https://www.googleapis.com/youtube/v3/search';
+
+  //   $.getJSON(url, options, function(data) {
+  //     console.log(data);
+  //   });
+
+  // }
+
   handleSubmit() {
     console.log('handleSubmit!!');
     var options = {
-      key: window.YOUTUBE_API_KEY,
+      key: YOUTUBE_API_KEY,
       query: this.state.searchTerm,
-      max: 5 
+      max: 5
     };
-    searchYouTube(options, this.setState({
-      videos: data,
-      selectedVideo: data[0]
-    }));
+    searchYouTube(options, data => { 
+      this.setState({
+        videos: data,
+        selectedVideo: data[0]
+      });
+    });
   }
   
 

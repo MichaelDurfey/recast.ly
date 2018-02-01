@@ -1,4 +1,6 @@
 var getURLSearchParams = function(url) {
+  // taking the parameter part of the url
+  // turning into key/value pairs on an object
   return url
     .split('?')[1]
     .split('&')
@@ -57,7 +59,8 @@ describe('searchYouTube', function() {
 
   it('should accept `key`, `query`, and `max` options and send them in GET request', function() {
     searchYouTube({ key: 'API_KEY', query: 'cats', max: 10 }, () => {});
-
+    // SHOULD HAVE //?key=API_KEY&q=cats&maxResults=10
+    //?key=AIzaSyCBsKbxElw71tJeEaGD6HSLVsDXM0WdTV8&query=react&max=5
     var params = getURLSearchParams(requests[0].url);
     expect(params.key).to.equal('API_KEY');
     expect(params.q).to.equal('cats');
