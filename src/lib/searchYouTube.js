@@ -5,12 +5,14 @@ var searchYouTube = (options, callback) => {
   options.q = options.query;
   delete options.query;
   options.maxResults = options.max;
+  options.type = 'video';
+  options.embeddedVideo = true;
   delete options.max;
   $.get({
     url: url, 
     data: options,
     success: function(data) {
-      console.log(data);
+      callback(data.items);
     },
     error: function(error) {
       console.log(error);

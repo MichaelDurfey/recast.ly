@@ -2,8 +2,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: exampleVideoData,
-      selectedVideo: exampleVideoData[0],
+      videos: [],
+      selectedVideo: {
+        id: {
+          videoId: '' //this is a placeholder
+        }, 
+        snippet: {
+          title: '',
+          description: ''
+        },
+      },
       searchTerm: ''
     };
   }
@@ -17,15 +25,19 @@ class App extends React.Component {
     this.setState({searchTerm: input});
   }
 
-  // searchYouTube(options, callBack) {
-  //   console.log(options);
-  //   let url = 'https://www.googleapis.com/youtube/v3/search';
-
-  //   $.getJSON(url, options, function(data) {
-  //     console.log(data);
-  //   });
-
-  // }
+  componentDidMount() {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: 'dogs',
+      max: 5
+    };
+    this.props.searchYouTube(options, data => {
+      this.setState({
+        videos: data,
+        selectedVideo: data[0]
+      });
+    });
+  }
 
   handleSubmit() {
     console.log('handleSubmit!!');
@@ -34,7 +46,7 @@ class App extends React.Component {
       query: this.state.searchTerm,
       max: 5
     };
-    searchYouTube(options, data => { 
+    this.props.searchYouTube(options, data => { 
       this.setState({
         videos: data,
         selectedVideo: data[0]
@@ -53,7 +65,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.selectedVideo}/>
+            <VideoPlayer video={this.state.selectedVideo} />
           </div>
           <div className="col-md-5">
             <VideoList videos={this.state.videos} handleClick={(e) => this.handleClick(e)}/> {/*handleClick is a property on the videoList component */}
