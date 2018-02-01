@@ -1,10 +1,12 @@
-var VideoList = () => (
+var VideoList = (props) => (
   <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
+    {
+      props.videos.map( (video)=> { // .map(function(item) {}) arrow goes to the right of parameter
+        return (<VideoListEntry // return a new instance of VideoListEntry on each iteration
+          video={video}
+        /> );
+      })
+    }
   </div>
 );
 
