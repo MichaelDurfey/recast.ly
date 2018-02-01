@@ -4,7 +4,8 @@ var VideoList = (props) => (
       props.videos.map( (video)=> { // .map(function(item) {}) arrow goes to the right of parameter
         return (<VideoListEntry // return a new instance of VideoListEntry on each iteration
           video={video}
-        /> );
+          handleClick={props.handleClick} // handleClick is a property on videoListEntry
+        /> );                             // and props.handleClick is inherited from the props parameter      
       })
     }
   </div>
