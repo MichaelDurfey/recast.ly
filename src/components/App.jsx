@@ -14,6 +14,11 @@ class App extends React.Component {
       },
       searchTerm: ''
     };
+    this.options = {
+      key: YOUTUBE_API_KEY,
+      query: 'dogs',
+      max: 5
+    };
   }
 
   handleClick(selected) { /*handleClick is a method on our App */
@@ -23,15 +28,22 @@ class App extends React.Component {
 
   handleChange(input) {
     this.setState({searchTerm: input});
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: input.length < 1 ? 'dogs' : input,
+      max: 5
+    };
+      
+    this.props.searchYouTube(options, data => {
+      this.setState({
+        videos: data,
+        selectedVideo: data[0]
+      });
+    });
   }
 
   componentDidMount() {
-    var options = {
-      key: YOUTUBE_API_KEY,
-      query: 'dogs',
-      max: 5
-    };
-    this.props.searchYouTube(options, data => {
+    this.props.searchYouTube(this.options, data => {
       this.setState({
         videos: data,
         selectedVideo: data[0]
