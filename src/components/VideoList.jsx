@@ -1,10 +1,11 @@
-var VideoList = (props) => (
+var VideoList = ({videos, handleClick}) => (
+  //es6 destructuring method {video} this is equal to 'the first object passed in as an argument has a property of video, set that property to a variable called video'
   <div className="video-list">
     {
-      props.videos.map( (video)=> { // .map(function(item) {}) arrow goes to the right of parameter
+      videos.map( (video)=> { // .map(function(item) {}) arrow goes to the right of parameter
         return (<VideoListEntry // return a new instance of VideoListEntry on each iteration
           video={video}
-          handleClick={props.handleClick} // handleClick is a property on videoListEntry
+          handleClick={handleClick} // handleClick is a property on videoListEntry
         /> );                             // and props.handleClick is inherited from the props parameter      
       })
     }

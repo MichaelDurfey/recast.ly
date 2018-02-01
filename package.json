@@ -16,7 +16,7 @@
     "lodash": "^4.6.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "live-server:": "^6.11.0"
+    "live-server": "^1.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",

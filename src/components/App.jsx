@@ -4,6 +4,7 @@ class App extends React.Component {
     this.state = {
       videos: exampleVideoData,
       selectedVideo: exampleVideoData[0],
+      searchTerm: ''
     };
   }
 
@@ -13,11 +14,20 @@ class App extends React.Component {
   }
 
   handleChange(input) {
-
+    this.setState({searchTerm: input});
   }
 
   handleSubmit() {
-    
+    console.log('handleSubmit!!');
+    var options = {
+      key: window.YOUTUBE_API_KEY,
+      query: this.state.searchTerm,
+      max: 5 
+    };
+    searchYouTube(options, this.setState({
+      videos: data,
+      selectedVideo: data[0]
+    }));
   }
   
 
@@ -26,7 +36,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search handleSubmit={() => this.handleSubmit}handleChange={(input) => { this.handleChange(input); } } />
+            <Search handleSubmit={() => this.handleSubmit()} handleChange={(input) => { this.handleChange(input); } } />
           </div>
         </nav>
         <div className="row">
