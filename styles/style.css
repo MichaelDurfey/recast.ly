@@ -41,6 +41,10 @@ body {
   margin-left: 20px;
 }
 
+.videoDetail{
+  height: 100px;
+}
+
 .video-player-details {
   background: #fff;
   padding: 8px;

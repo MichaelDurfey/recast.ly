@@ -4,7 +4,7 @@ var VideoListEntry = ({video, handleClick}) => {
   //es6 destructuring method {video} this is equal to 'the first object passed in as an argument has a property of video, set that property to a variable called video'
   // console.log(video)
   return (
-    <div onClick={() => handleClick(video)}className="video-list-entry media"> {/*onClick is anonymous function that will invoke our handleClick function, this value is bound using arrow function */}
+    <div onClick={() => handleClick(video)}className="video-list-entry media" id ={video.id}> {/*onClick is anonymous function that will invoke our handleClick function, this value is bound using arrow function */}
       <div className="media-left media-middle">
         <img className="media-object" src={video.snippet.thumbnails.default.url} alt="" />
       </div>
